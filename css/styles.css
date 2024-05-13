@@ -1,0 +1,549 @@
+/* --- FONTS --- */
+@font-face {
+    font-family: "font";
+    src: url('../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf');
+}
+
+/* --- COLOR VARIABLES --- */
+:root {
+    --black: rgb(1, 7, 12);
+    --blue: rgb(94, 16, 127);
+    --bright: #05f1f4;
+    --gray: #222;
+    --bright_purple: rgb(255, 0, 221);
+    --dark: rgb(34, 25, 39);
+    --actualRed: rgb(255, 0, 90);
+    --red: #ff5cc3;
+    --orange: #ff9671;
+    --transparent_black: rgba(16, 16, 16, 0.85);
+    --transparent_black_5: rgba(16, 16, 16, 0.5);
+    --transparent_black_35: rgba(16, 16, 16, 0.35);
+    --transparent_black_25: rgba(16, 16, 16, 0.25);
+    --transparent_bright: rgba(5, 241, 244, 0.5);
+    --transparent_bright_35: rgba(5, 241, 244, 0.35);
+    --transparent_bright_25: rgba(5, 241, 244, 0.15);
+    --transparent_bright_5: rgba(5, 241, 244, 0.55);
+    --transparent_dark: rgba(47, 3, 41, 0.65);
+    --transparent_red: rgba(255, 92, 92, 0.5);
+    --transparent_red_35: rgba(255, 92, 92, 0.35);
+    --transparent_red_25: rgba(255, 92, 92, 0.15);
+    --transparent_red_5: rgba(255, 92, 92, 0.65);
+    --transparent_white_35: rgba(255, 255, 255, .35);
+    --transparent_white_25: rgba(255, 255, 255, 0.111);
+    --transparent_white_5: rgba(255, 255, 255, .5);
+    --transparent_yellow_35: rgba(253, 236, 114, .35);
+    --transparent_yellow_25: rgba(253, 236, 114, .15);
+    --transparent_yellow_5: rgba(253, 236, 114, .65);
+    --transparent_yellow: rgba(253, 236, 114, .5);
+    --transparent_orange: rgba(255, 150, 113, .5);
+    --transparent_orange_25: rgba(255, 150, 113, .15);
+    --transparent_orange_35: rgba(255, 150, 113, .53);
+    --transparent_orange_5: rgba(255, 150, 113, .65);
+    --transparent: rgba(255, 255, 255, 0);
+    --white: rgb(252, 252, 252);
+    --yellow: #807626;
+    --height: 87vh;
+    --inst-width: 14vw;
+}
+
+/* --- GLOBAL STYLES --- */
+body,
+html {
+    max-height: 100vh;
+}
+
+body {
+    font-family: "font";
+    background-color: var(--black);
+    color: var(--white);
+    font-weight: 400;
+    font-size: 1.75vh;
+    margin: 0;
+    position: relative;
+}
+
+.button {
+    transition: .2s;
+    box-sizing: border-box;
+    border: .2vh solid var(--black);
+
+}
+
+.button span {
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+
+.opacity50 {
+    opacity: .5 !important;
+}
+
+/* SEQUENCER CONTAINERS */
+#sequencer {
+    display: flex;
+    height: var(--height);
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+#sequencer-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+    width: 20vw;
+}
+
+#sequencer-board {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    overflow-x: scroll;
+}
+
+/* SEQUENCER BOARD */
+#sequencer-board .instrument-buttons-container {
+    display: flex;
+    min-height: 10vh;
+}
+
+#sequencer-board .instrument-button {
+    height: 5vh;
+    display: flex;
+    min-width: var(--inst-width);
+}
+
+#sequencer-board .instrument-button span {
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 1);
+    background-color: var(--transparent_white_35);
+    color: var(--black);
+}
+
+#sequencer-board .mute-button {
+    transition: .2s;
+    min-height: 5vh;
+    display: flex;
+}
+
+#sequencer-board .mute-button span {
+    margin: auto;
+    display: block;
+}
+
+#sequencer-board .instrument-beats-container {
+    display: flex;
+    min-width: 80vw;
+    overflow-y: scroll;
+    flex-grow: 1;
+}
+
+#sequencer-board .instrument-beat-buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#sequencer-board .beat-button {
+    min-height: 3vh;
+    flex-grow: 1;
+    opacity: .33;
+}
+
+#sequencer-board .beat-indicator.hidden,
+#sequencer-board .beat-button.hidden {
+    display: none;
+}
+
+#sequencer-board .beat-button.highlight {
+    margin-top: 1vh;
+}
+
+#sequencer-board .instrument-beat-buttons-container {
+    min-width: var(--inst-width);
+}
+
+#sequencer-board .beat-indicator-button,
+#sequencer-board .beat-indicator {
+    background-color: var(--gray);
+    min-width: 10vw;
+}
+
+#sequencer-board .beat-indicator.is-active {
+    opacity: 1;
+    background-color: var(--actualRed) !important;
+    box-shadow: 0px 0px 20px var(--actualRed) !important;
+}
+
+#seqencer-board .beat-indicator,
+#seqencer-board .beat-indicator-buttons-container {
+    flex-grow: 1;
+}
+
+#sequencer-board .instrument-beats-container .beat-indicator-buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#sequencer-board .instrument-beats-container .beat-button.is-active {
+    opacity: 1;
+}
+
+/* SEQUENCER SCROLL */
+#sequencer-board .instrument-buttons-container .beat-indicator-button {
+    position: sticky;
+    right: 0;
+    /* Stick to the right */
+    z-index: 2;
+    /* Ensure it stays on top of other content */
+}
+
+#sequencer-board .instrument-beats-container .beat-indicator-buttons-container {
+    position: sticky;
+    right: 0;
+    /* Stick to the right */
+    z-index: 2;
+    /* Ensure it stays on top of other scrollable content */
+}
+
+#sequencer-board .beat-indicator-button {
+    display: flex;
+}
+
+#sequencer-board .instrument-buttons-container {
+    overflow-x: auto;
+}
+
+#sequencer-board .instrument-beats-container {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 90vh;
+    /* Adjust based on your layout */
+}
+
+/* SEQUENCER CONTROLS */
+#sequencer-controls div {
+    background-color: var(--gray);
+    flex-grow: .15;
+    display: flex;
+}
+
+/* HIDDEN CONTAINERS */
+#hidden-containers>div {
+    position: absolute;
+    padding-top: 8vh;
+    padding-bottom: 3vh;
+    width: 100vw;
+    left: -100vw;
+    top: 0;
+    z-index: 2;
+    background-color: var(--transparent_black);
+    height: var(--height);
+    box-sizing: border-box;
+    transition: .2s;
+    overflow-y: scroll;
+}
+
+#hidden-containers div.show-hidden-containers {
+    left: 0;
+}
+
+#hidden-containers #master-settings {
+    display: flex;
+    flex-direction: column;
+}
+
+#hidden-containers h4{
+    font-size: 1.5rem;
+    text-align: left;
+    display: block;
+    margin:  5vw auto auto 5vw;
+}
+
+#hidden-containers .form-buttons-container {
+    display: flex;
+    padding: 10vw;
+}
+#hidden-containers .form-buttons-container .button{
+    display: flex;
+    width: 20vw;
+    height: 10vw;
+    margin: auto;
+    background-color: var(--gray);
+}
+
+/* PANEL HEADER */
+.panel-header {
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    margin-top: -8vh;
+    width: 100%;
+    background-color: var(--transparent_black);
+}
+
+.panel-delete-button {
+    width: 10vh;
+}
+
+.panel-close-button {
+    width: 5vh;
+    background-color: var(--actualRed);
+}
+
+.panel-delete-button,
+.panel-close-button {
+    height: 5vh;
+    text-align: center;
+    display: flex;
+    margin: 1vh;
+}
+
+.panel-delete-button span,
+.panel-close-button span {
+    display: block;
+    margin: auto;
+}
+
+/* SLIDERS */
+.slider {
+    height: 5vh;
+    margin: auto 0;
+    display: block;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    width: 100%;
+    background-color: var(--transparent_black);
+    outline: none;
+    -webkit-transition: .2s;
+    transition: .3s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 6vh;
+    height: 6vh;
+    background: var(--transparent_white_5);
+    border: .5vh solid var(--transparent_white_5);
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    box-sizing: border-box;
+    width: 6vh;
+    height: 6vh;
+    border: .5vh inset var(--transpagrrent_white_5);
+    background: var(--transparent_white_5);
+    cursor: pointer;
+}
+
+.slider-buttons {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.slider-buttons input {
+    width: 60vw;
+}
+
+.slider-buttons .button {
+    width: 10vw;
+    margin: auto none;
+}
+
+.slider-buttons .button {
+    display: flex;
+    flex-direction: row;
+    color: var(--white);
+    width: 6vh;
+    height: 6vh;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.slider-buttons .button-plus{
+    background-color: var(--bright);
+    margin-right: auto;
+}
+.slider-buttons .button-minus{
+    margin-left: auto;
+    background-color: var(--actualRed);
+}
+
+.slider-buttons .button span{
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+/* COLOR/TEXT INPUT */
+input[type="text"],
+input[type="color"]{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    display: block;
+    width: 90vw;
+    height: 10vw;
+    border: 0 solid black;
+    margin: auto;
+    padding: 0;
+    color: var(--white);
+    text-align: center;
+    background-color: var(--gray);
+    font-size: 1.5rem;
+}
+
+/* SELECT INPUT */
+select {
+    display: block;
+    width: 90vw; /* Set the width of the select box */
+    margin: auto;
+    padding: 8px 12px; /* Add some padding inside the select box */
+    background-color: var(--gray); /* Set a white background color */
+    color: var(--white); /* Set the text color */
+    -webkit-appearance: none; /* Remove default styling on WebKit browsers */
+    -moz-appearance: none; /* Remove default styling on Firefox */
+    appearance: none; /* Remove default styling on modern browsers */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2212%22%20height%3D%2212%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M6%209L1.5%204.5%2011.5%204.5z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+  }
+
+/* Style the options */
+option {
+padding: 8px 10px; /* Add padding to each option */
+background-color: #FFF; /* White background color for options */
+color: #333; /* Text color for options */
+}
+
+/* SAVING */
+.selected-session {
+    color: var(--bright);
+}
+
+/* --- CUSTOM POP-UPs --- */
+#custom-modal-container {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    position: absolute;
+    height: var(--height);
+    opacity: 0;
+    background-color: var(--transparent_black);
+    justify-content: space-between;
+    z-index: -100;
+    transition: .2s;
+}
+
+#custom-modal {
+    display: flex;
+    margin: auto;
+    background-color: var(--black);
+    padding: 10vw;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+#custom-modal-buttons {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#custom-modal-buttons .button {
+    display: flex;
+    width: 15vw;
+    height: 10vw;
+    margin: auto 2vw;
+}
+
+#custom-modal-yes {
+    background-color: var(--transparent_bright_5);
+}
+
+#custom-modal-no {
+    background-color: var(--actualRed);
+    color: var(--white);
+}
+
+#custom-modal-text {
+    margin: 0 auto 5vw ;
+    color: var(--white);
+    display: flex;
+    font-weight: 400;
+    flex-direction: column-reverse;
+}
+
+#custom-modal-text span {
+    flex-direction: column;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#custom-modal-text-span {
+    font-weight: 400;
+    font-size: 1.75em;
+    display: block;
+    margin: auto;
+}
+
+#custom-modal-container.show-modal {
+    z-index: 10000;
+    opacity: 1;
+}
+
+@media(min-width:900px) {
+    :root {
+        --inst-width: 6vw;
+    }
+
+    #sequencer-controls {
+        width: 10vw;
+    }
+
+    #sequencer-board {
+        width: 90vw;
+    }
+
+    #sequencer-board .instrument-buttons-container {
+        min-height: 12vh;
+    }
+
+    #sequencer-board .instrument-button {
+        height: 7vh;
+    }
+
+    #sequencer-board .beat-button {
+        min-height: 7vh;
+    }
+
+    #sequencer-board .beat-indicator-button,
+    #sequencer-board .beat-indicator {
+        min-width: 5vw;
+    }
+}
+
+/* --- ADS --- */
+.ads {
+    position: unset;
+    bottom: 0;
+    left: 0;
+    height: 13vh;
+    background: rgb(19, 19, 19);
+    color: rgb(46, 46, 46);
+    display: flex;
+    justify-content: center;
+}
+
+.ads span {
+    margin: auto;
+    text-align: center;
+    display: block;
+}
