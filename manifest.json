@@ -3,8 +3,8 @@
   "short_name": "Beetbox",
   "description": "An opensource version of Beetbox's drum sequencer app",
  
-  "scope": "/beetbox-opensource/",
-  "start_url": "/beetbox-opensource/",
+  "scope": "/beetbox-opensource-app/",
+  "start_url": "/beetbox-opensource-app/",
  
   "background_color": "rgb(0, 255, 170)",
   "theme_color": "rgb(0, 255, 170)",
@@ -13,7 +13,7 @@
  
   "icons": [
       {
-        "src": "/beetbox-opensource/assets/imgs/beetbox_logo.png",
+        "src": "/beetbox-opensource-app/assets/imgs/beetbox_logo.png",
         "type": "image/png",
         "sizes": "520x520"
       }

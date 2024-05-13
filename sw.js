@@ -1,4 +1,4 @@
-var GHPATH = '/beetbox-opensource';
+var GHPATH = '/beetbox-opensource-app';
 
 var APP_PREFIX = 'bbos_';
 
